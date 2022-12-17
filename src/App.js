@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { incNumber, decNumber,divNumber,mulNumber } from "./actions";
+const App = () => {
+   const state1 = useSelector((state) => state.changeNumber);
+   const state2 = useSelector(state=>state.divOrMulNumber);
+   const dispatch = useDispatch();
+   return (
+      <div className="main_div">
+         <div className="child_div">
+            <p onClick={() => dispatch(decNumber())}>-</p>
+            <p>{state1}</p>
+            <p onClick={() => dispatch(incNumber())}>+</p>
+         </div>
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+         <div className="child_div">
+            <p onClick={() => dispatch(divNumber())}> / </p>
+            <p>{state2}</p>
+            <p onClick={() => dispatch(mulNumber())}> * </p>
+         </div>
+      </div>
+
+      
+   );
+};
 
 export default App;
